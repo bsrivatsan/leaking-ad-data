@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ad Data Collector Popup</title>
+        <link rel="stylesheet" href="css/foundation.min.css">
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+
+    <body style="width:650px; padding:20px;">
+        <h4 style="text-align: center">Ad Data Extension</h4>
+        <p>Thank you for agreeing to help me collect data for my thesis! Please fill out the following questions 
+            to the best of your ability - they will be used to assess whether targeted ads may indeed be "leaking" 
+            your data to third parties. <br> <br>
+            This extension collects the contents of targeted advertisements shown to you by Google, Facebook, or
+            third-party ad networks. It will automatically disable when you are browsing in incognito mode. All personal identifiers
+            will be removed from these data and they will be kept confidential. <br> <br>
+
+            <b>Click Save (at the bottom) regularly!</b> If you click outside this popup without saving, your answers will be lost.
+        </p>
+        <div class="row" style="text-align: center">                                    
+                <p> If you have any questions, contact me at <mailto:bharaths@princeton.edu class="edu">bharaths@princeton.edu</mailto:bharaths@.edu>. </p>
+                <a id="instructions_link" class=" button" >Instructions</a> <a id="ov_link" class=" button">Thesis Overview</a>
+        </div>
+
+        <div class="callout" id="lottery" style="display:none">
+            <p><b>Section 0: Lottery Entry</b> <br>
+                Submit your email address below to enter into a lottery for one of five $40 gift cards for Amazon or 
+                Airbnb. Your email address will go into a separate database; it will not be possible to link
+                your email submission with any of the data collected. </p>
+            <form id="lotteryform">
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label>Email address</label>
+                        <input type="text" placeholder="john@princeton.edu" id="email" maxlength="70"
+                        pattern="[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*"/>
+                    </div>
+                </div>  
+                <div class="row" style="text-align: center">
+                    <button type="submit" class="success button " id="lotterybtn" >Enter Lottery</button><br/>
+                </div>
+            </form>
+            <hr>
+            <p>The following is your randomized id; save it to be able to see your anonymized ad targeting report at the end
+                of my thesis study. </p>
+            <p id="lottery_uid" style="text-align: center; font-weight:bold"><i>alphanumeric userid here!</i></p>
+            
+        </div>
+
+        <form id ="userform">
+        <div class="callout" id="s1">
+            <p><b>Section 1: Personal Background</b> <br>
+                These direct identifiers will be encrypted, and researchers will not be able to see any unencrypted textual 
+                responses. They will be used to automatically remove any personally identifying information from the 
+                advertisements collected </p>
+        
+          <div class="grid-x grid-padding-x">
+            <div class="large-6 small-6 cell">
+              <label>First Name</label>
+              <input type="text" placeholder="" id="fname" pattern="[a-zA-Z]*" maxlength="20"/>
+            </div>
+            <div class="large-6 small-6 cell">
+              <label>Last Name</label>
+              <input type="text" placeholder="" id="lname" pattern="[a-zA-Z]*" maxlength="20"/>
+            </div>
+          </div>
+          <div class="grid-x grid-padding-x">
+                <div class="large-12 cell">
+                  <label>Birthdate</label>
+                  <input type="text" placeholder="mm/dd/yyyy" id="bday" pattern="(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.]\d{4}"/>
+                </div>
+            </div>            
+            <div class="grid-x grid-padding-x">
+                <div class="small-12 cell">
+                    <label>Place of Current Residence</label>
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                    <div class="large-4 small-4 cell">
+                      <input type="text" placeholder="City" id="ccity" pattern="[a-zA-Z\s]*" maxlength="30"/>
+                    </div>
+                    <div class="large-4 small-4 cell">
+                      <input type="text" placeholder="State" id="cstate" pattern="[a-zA-Z\s]*" maxlength="30"/>
+                    </div>
+                    <div class="large-4 small-4 cell">
+                        <input type="text" placeholder="Country" id="ccountry" pattern="[a-zA-Z\s]*" maxlength="30"/>
+                    </div>
+             </div>
+             <div class="grid-x grid-padding-x">
+                    <div class="small-12 cell">
+                        <label>Place of Home Residence</label>
+                    </div>
+            </div>
+             <div class="grid-x grid-padding-x">
+                    <div class="large-4 small-4 cell">
+                        <input type="text" placeholder="City" id="hcity" pattern="[a-zA-Z\s]*" maxlength="30"/>
+                    </div>
+                    <div class="large-4 small-4 cell">
+                        <input type="text" placeholder="State" id="hstate" pattern="[a-zA-Z\s]*" maxlength="30"/>
+                    </div>
+                    <div class="large-4 small-4 cell">
+                        <input type="text" placeholder="Country" id="hcountry" pattern="[a-zA-Z\s]*" maxlength="30"/>
+                    </div>
+             </div>
+        </div>
+
+        <div class="callout" id="s2">
+            <p><b>Section 2: Demographic Information</b> <br>
+                Please answer the following questions to the best of your ability. If you feel uncomfortable answering
+                any of the below, leave the response field blank. </p>
+    
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                    <label>Age</label>
+                    <input type="number" placeholder="Years only" id="age" min="18" pattern="\d\d" />
+                    </div>
+            </div> 
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <label>Gender</label>
+                      <select id="gender">
+                        <option value="" selected disabled>Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="trans">Trans*</option>
+                        <option value="other">Other/Choose not to Disclose</option>
+                      </select>
+                    </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <label>Race (choose all that apply)</label>
+                      <input id="black" type="checkbox"><label for="black">Black and African American</label>
+                      <input id="amerindian" type="checkbox"><label for="amerindian">American-Indian or Alaskan Native</label>
+                      <input id="asian" type="checkbox"><label for="asian">Asian</label>
+                      <input id="hisplat" type="checkbox"><label for="hisplat">Hispanic or Latino</label>
+                      <input id="hawaii" type="checkbox"><label for="hawaii">Native Hawaiian or Other Pacific Islander</label>
+                      <input id="white" type="checkbox"><label for="white">White</label>                      
+                    </div>
+            </div>          
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <label>Education Level</label>
+                      <select id="edu" >
+                        <option value="" selected disabled>Select the closest descriptor</option>
+                        <option value="none">No degree</option>
+                        <option value="hs">High School or GED</option>
+                        <option value="undergrad">University - Undergraduate</option>
+                        <option value="grad">University - Graduate</option>
+                        <option value="other">Other </option>                        
+                      </select>
+                    </div>
+            </div>
+    </div>
+
+
+    <div class="callout" id="s3">
+            <p><b>Section 3: Privacy Practices</b> <br>
+                Please answer the following questions to the best of your ability. If you are unsure of your answer to
+                any of the below, leave the response field blank. </p>
+    
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <label>Do you clear your cookies?</label>
+                      <select id="clrcookies" >
+                        <option value="" selected disabled >Select the closest descriptor</option>
+                        <option value="no">No</option>
+                        <option value="rare">Yes, very rarely</option>   
+                        <option value="year">Yes, once a year</option>
+                        <option value="month">Yes, once a month</option>
+                        <option value="week">Yes, once a week</option>
+                        <option value="reg">Yes, very regularly</option>                        
+                        <option value="na">N/A or I don't know</option>                        
+                      </select>
+                    </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <label>Do you browse in incognito mode?</label>
+                      <select id="incog" >
+                        <option value="" selected disabled >Select the closest descriptor</option>
+                        <option value="no">No</option>
+                        <option value="rare">Yes, very rarely</option>
+                        <option value="occasional">Yes, occasionally</option>
+                        <option value="half">Yes, about half the time</option>
+                        <option value="usual">Yes, usually</option> 
+                        <option value="na">N/A or I don't know</option>                        
+                      </select>
+                    </div>
+            </div>
+
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <label>Do you often disable/block any of the following when browsing the web? (check all that apply):</label>
+                      <input id="cookie" type="checkbox"><label for="cookie">Cookies</label>
+                      <input id="jsblock" type="checkbox"><label for="jsblock">Javascript</label>
+                      <input id="loc" type="checkbox"><label for="loc">Location tracking</label>
+                      <input id="pluginblk" type="checkbox"><label for="pluginblk">Plugins/flash</label>
+                    </div>
+            </div>          
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <label>Do you typically use an adblocker?</label>
+                      <input id="adblockyes" name="adblock" type="radio"><label for="adblockyes">Yes</label>
+                      <input id="adblockno" name="adblock" type="radio"><label for="adblockno">No</label>                  
+                    </div>
+            </div>  
+            <div class="grid-x grid-padding-x">
+                <div class="large-12 cell">
+                  <label>Have you set up/elected to use the Do Not Track protocol?</label>
+                  <input id="dntyes" name="dnt" type="radio"><label for="dntyes">Yes</label>
+                  <input id="dntno" name="dnt" type="radio"><label for="dntno">No</label>                  
+                </div>
+            </div> 
+            <div class="grid-x grid-padding-x">
+                <div class="large-12 cell">
+                  <label>When you browse the web on Google Chrome, do you log in with your account?</label>
+                  <select id="loggedIn" >
+                    <option value="" selected disabled >Select the closest descriptor</option>
+                    <option value="no">Never/Seldom</option>
+                    <option value="personal">Yes, on my personal laptop</option>
+                    <option value="work">Yes, on my work computer</option>
+                    <option value="allComps">Yes, on all computers I regularly use</option>
+                    <option value="na">N/A or I don't know</option>                        
+                  </select>
+                </div>
+            </div>
+    </div>
+
+
+    <div class="callout" id="s4">
+            <p><b>Section 4: User Profile</b> <br>
+                Instructions for how to complete this section are in the instructions document, also available
+                <a href="">here</a>. </p>
+            <div class="grid-x grid-padding-x">
+                <div class="large-12 cell">
+                <label>Google-identified user interests</label>
+                <textarea id="googleinterests" name="googleinterests" style="min-height: 150px" 
+                    placeholder="Copy and paste the full list, with a line between each interest"></textarea>
+                </div>
+            </div>        
+            <div class="grid-x grid-padding-x">
+                <div class="large-12 cell">
+                  <label>On a scale of 1 (least) to 5 (most), how accurate would you say these interests are? 
+                      In other words, are you interested in most or all of the topics Google found?</label>
+                  <input id="gIntP1" name="gIntP" type="radio"><label for="gIntP1">1</label>
+                  <input id="gIntP2" name="gIntP" type="radio"><label for="gIntP2">2</label>       
+                  <input id="gIntP3" name="gIntP" type="radio"><label for="gIntP3">3</label>
+                  <input id="gIntP4" name="gIntP" type="radio"><label for="gIntP4">4</label>        
+                  <input id="gIntP5" name="gIntP" type="radio"><label for="gIntP5">5</label>
+                </div>
+            </div>  
+            <div class="grid-x grid-padding-x">
+                <div class="large-12 cell">
+                    <label>On a scale of 1 (least) to 5 (most), how comprehensive would you say these interests are? 
+                        In other words, is Google missing out on interests that are significant to you?</label>
+                    <input id="gIntR1" name="gIntR" type="radio"><label for="gIntR1">1</label>
+                    <input id="gIntR2" name="gIntR" type="radio"><label for="gIntR2">2</label>       
+                    <input id="gIntR3" name="gIntR" type="radio"><label for="gIntR3">3</label>
+                    <input id="gIntR4" name="gIntR" type="radio"><label for="gIntR4">4</label>        
+                    <input id="gIntR5" name="gIntR" type="radio"><label for="gIntR5">5</label>
+                </div>
+            </div>  
+            <div class="grid-x grid-padding-x">
+                    <div class="small-12 cell">
+                        <label>Google-identified user profile</label>
+                    </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="large-6 small-6 cell">
+                      <label>Gender</label>
+                      <input type="text" placeholder="" id="gGender" pattern="[a-zA-Z]*" maxlength="20"/>
+                    </div>
+                    <div class="large-6 small-6 cell">
+                      <label>Age</label>
+                      <input type="text" placeholder="" id="gAge" maxlength="20"/>
+                    </div>
+            </div>  
+
+            <hr>
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                    <label>Facebook-identified user interests</label>
+                    <textarea id="fbinterests" name="fbinterests" style="min-height: 150px" 
+                        placeholder="Copy and paste your interests from the first 5 interest categories, with a line between each interest. Don't worry if the formatting is messed up (ie. if interests repeat or 'see example ads'/'remove' appears)!"></textarea>
+                    </div>
+            </div> 
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <label>On a scale of 1 (least) to 5 (most), how accurate would you say these interests are? 
+                          In other words, are you interested in most or all of the topics Facebook found?</label>
+                      <input id="fbIntP1" name="fbIntP" type="radio"><label for="fbIntP1">1</label>
+                      <input id="fbIntP2" name="fbIntP" type="radio"><label for="fbIntP2">2</label>       
+                      <input id="fbIntP3" name="fbIntP" type="radio"><label for="fbIntP3">3</label>
+                      <input id="fbIntP4" name="fbIntP" type="radio"><label for="fbIntP4">4</label>        
+                      <input id="fbIntP5" name="fbIntP" type="radio"><label for="fbIntP5">5</label>
+                    </div>
+                </div>  
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label>On a scale of 1 (least) to 5 (most), how comprehensive would you say these interests are? 
+                            In other words, is Facebook missing out on interests that are significant to you?</label>
+                        <input id="fbIntR1" name="fbIntR" type="radio"><label for="fbIntR1">1</label>
+                        <input id="fbIntR2" name="fbIntR" type="radio"><label for="fbIntR2">2</label>       
+                        <input id="fbIntR3" name="fbIntR" type="radio"><label for="fbIntR3">3</label>
+                        <input id="fbIntR4" name="fbIntR" type="radio"><label for="fbIntR4">4</label>        
+                        <input id="fbIntR5" name="fbIntR" type="radio"><label for="fbIntR5">5</label>
+                    </div>
+            </div>  
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                    <label>Facebook-identified user categories</label>
+                    <textarea id="fbcategories" name="fbcategories" style="min-height: 150px" 
+                        placeholder="Copy and paste the full list, with a line between each category."></textarea>
+                    </div>
+            </div> 
+            <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                      <label>On a scale of 1 (least) to 5 (most), how accurate would you say these categories are? 
+                          In other words, has Facebook categorized your attributes well?</label>
+                      <input id="fbCat1" name="fbCat" type="radio"><label for="fbCat1">1</label>
+                      <input id="fbCat2" name="fbCat" type="radio"><label for="fbCat2">2</label>       
+                      <input id="fbCat3" name="fbCat" type="radio"><label for="fbCat3">3</label>
+                      <input id="fbCat4" name="fbCat" type="radio"><label for="fbCat4">4</label>        
+                      <input id="fbCat5" name="fbCat" type="radio"><label for="fbCat5">5</label>
+                    </div>
+                </div>  
+            
+        </div>
+
+        <div class="callout" id="s5">
+                <p><b>Section 5: Outlooks on Online Privacy</b> <br>
+                    Please answer the following questions to the best of your ability. Pick the closest 
+                    descriptors, even if none fit you perfectly.</p>
+                <p>On a scale of 1 (least) to 5 (most), to what extent do you agree with the following
+                    statements?</p>
+
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label> When I browse the internet, I find that the ads I see are tailored to my interests </label>
+                        <input id="aretarget1" name="aretarget" type="radio"><label for="aretarget1">1</label>
+                        <input id="aretarget2" name="aretarget" type="radio"><label for="aretarget2">2</label>       
+                        <input id="aretarget3" name="aretarget" type="radio"><label for="aretarget3">3</label>
+                        <input id="aretarget4" name="aretarget" type="radio"><label for="aretarget4">4</label>        
+                        <input id="aretarget5" name="aretarget" type="radio"><label for="aretarget5">5</label>                       
+                    </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label> When I browse the internet, I want the ads I see to be tailored to my interests </label>
+                        <input id="wanttarget1" name="wanttarget" type="radio"><label for="wanttarget1">1</label>
+                        <input id="wanttarget2" name="wanttarget" type="radio"><label for="wanttarget2">2</label>       
+                        <input id="wanttarget3" name="wanttarget" type="radio"><label for="wanttarget3">3</label>
+                        <input id="wanttarget4" name="wanttarget" type="radio"><label for="wanttarget4">4</label>        
+                        <input id="wanttarget5" name="wanttarget" type="radio"><label for="wanttarget5">5</label>                       
+                    </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label> I trust Google as a steward of my personal data </label>
+                        <input id="goog_trust1" name="goog_trust" type="radio"><label for="goog_trust1">1</label>
+                        <input id="goog_trust2" name="goog_trust" type="radio"><label for="goog_trust2">2</label>       
+                        <input id="goog_trust3" name="goog_trust" type="radio"><label for="goog_trust3">3</label>
+                        <input id="goog_trust4" name="goog_trust" type="radio"><label for="goog_trust4">4</label>        
+                        <input id="goog_trust5" name="goog_trust" type="radio"><label for="goog_trust5">5</label>                       
+                    </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label> I trust Facebook as a steward of my personal data </label>
+                        <input id="fb_trust1" name="fb_trust" type="radio"><label for="fb_trust1">1</label>
+                        <input id="fb_trust2" name="fb_trust" type="radio"><label for="fb_trust2">2</label>       
+                        <input id="fb_trust3" name="fb_trust" type="radio"><label for="fb_trust3">3</label>
+                        <input id="fb_trust4" name="fb_trust" type="radio"><label for="fb_trust4">4</label>        
+                        <input id="fb_trust5" name="fb_trust" type="radio"><label for="fb_trust5">5</label>                       
+                    </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label> I trust third-party advertisers as stewards of my personal data </label>
+                        <input id="third_trust1" name="third_trust" type="radio"><label for="third_trust1">1</label>
+                        <input id="third_trust2" name="third_trust" type="radio"><label for="third_trust2">2</label>       
+                        <input id="third_trust3" name="third_trust" type="radio"><label for="third_trust3">3</label>
+                        <input id="third_trust4" name="third_trust" type="radio"><label for="third_trust4">4</label>        
+                        <input id="third_trust5" name="third_trust" type="radio"><label for="third_trust5">5</label>                       
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label>Of the labels and categories assigned to you above, are any private? </label>
+                        <select id="pvt" >
+                                <option value="" selected disabled >Select the closest descriptor</option>
+                                <option value="1st">Yes, I don't like that Google/Facebook has this information</option>
+                                <option value="adv">I don't mind Google/Facebook, but wouldn't want an advertiser seeing this info</option>
+                                <option value="3rd">I don't mind Google/Facebook/advertisers, but wouldn't want other third parties seeing this info</option>                                
+                                <option value="no">No, this information is not private</option>                       
+                        </select>               
+                    </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label>Having now seen your interest/user classifications, are you surprised? </label>
+                        <select id="surprise" >
+                                <option value="" selected disabled >Select the closest descriptor</option>
+                                <option value="prof">Yes, I didn't know I had a profile </option>
+                                <option value="acc">Yes, I didn't expect such an accurate/in-depth profile </option>
+                                <option value="inacc">Yes, I didn't expect such an inaccurate/broad profile </option>  
+                                <option value="no">No, I'd expected such a profile</option>    
+                                <option value="na">N/A or other</option>                                                
+                        </select>                    
+                    </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="large-12 cell">
+                        <label>Having now seen your profile, do you plan to change how you browse? </label>
+                        <select id="browse_change" >
+                                <option value="" selected disabled >Select the closest descriptor</option>
+                                <option value="dras">Yes, drastically </option>
+                                <option value="mod">Yes, moderately </option>
+                                <option value="no">No </option>                                               
+                        </select>                    
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="row" style="text-align: center">
+            <button type="submit" class="success button " id="savebtn" >Save</button><br/>
+        </div>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/what-input.js"></script>
+        <script src="js/foundation.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="user.js"></script>
+        <script src="popup.js"></script>
+    </body>
+</html>
